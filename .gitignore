@@ -1,0 +1,17 @@
+# Terraform state files - NEVER commit these
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# Terraform internal folder
+.terraform/
+
+# Terraform lock file (optional - some teams commit this)
+.terraform.lock.hcl
+
+# Environment variables and secrets
+*.env
+.env
+
+# AWS credentials
+credentials
