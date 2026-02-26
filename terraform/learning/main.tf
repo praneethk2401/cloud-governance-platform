@@ -3,13 +3,40 @@ provider "aws" {
   region = "ap-south-2"
 }
 
+variable "environment" {
+  description = "Environemnt name"
+  type = string
+  default = "learning"
+}
+
+variable "project_name" {
+  description = "Project name"
+  type = string
+  default = "cloud-governance-platform"
+}
+
 # This creates one S3 bucket in your AWS account
 resource "aws_s3_bucket" "my_first_bucket" {
-  bucket = "praneeth-terraform-learning-2026"
+  bucket = "${var.project_name}-${var.environment}-praneeth-2026"
 
   tags = {
-    Name        = "My First Terraform Bucket"
-    Environment = "learning"
-    Project     = "cloud-governance-platform"
+    Name        = "Governance Platform S3 Bucket"
+    Environment = var.environment
+    Project     = var.project_name
   }
+}
+
+output "bucket_name" {
+  description = "The name of the S3 bucket created"
+  value       = aws_s3_bucket.my_first_bucket.bucket
+}
+
+output "bucket_arn" {
+  description = "The ARN of the S3 bucket"
+  value       = aws_s3_bucket.my_first_bucket.arn
+}
+
+output "environment" {
+  description = "The environment this bucket belongs to"
+  value       = var.environment
 }
