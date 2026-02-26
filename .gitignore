@@ -15,3 +15,9 @@
 
 # AWS credentials
 credentials
+
+# Sensitive terraform state exports
+diagrams/*.txt
+
+# Fleet Manager reports
+diagrams/**/*.json
