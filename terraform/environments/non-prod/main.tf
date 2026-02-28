@@ -40,6 +40,15 @@ module "patch_management" {
   sns_topic_arn               = module.notifications.sns_topic_arn
 }
 
+# Call the Lambda module
+module "lambda" {
+  source             = "../../modules/lambda"
+  environment        = "non-prod"
+  project_name       = "cloud-governance-platform"
+  sns_topic_arn      = module.notifications.sns_topic_arn
+  lambda_source_path = "../../../lambda/patch-compliance-reporter"
+}
+
 # Outputs
 output "non_prod_vpc_id" {
   value = module.vpc.vpc_id
@@ -59,4 +68,11 @@ output "non_prod_maintenance_window" {
 
 output "non_prod_sns_topic" {
   value = module.notifications.sns_topic_name
+}
+output "non_prod_lambda_function" {
+  value = module.lambda.lambda_function_name
+}
+
+output "non_prod_compliance_bucket" {
+  value = module.lambda.compliance_bucket_name
 }
