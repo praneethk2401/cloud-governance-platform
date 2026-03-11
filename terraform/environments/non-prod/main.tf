@@ -49,6 +49,14 @@ module "lambda" {
   lambda_source_path = "../../../lambda/patch-compliance-reporter"
 }
 
+module "security" {
+  source             = "../../modules/security"
+  environment        = "non-prod"
+  project_name       = "cloud-governance-platform"
+  sns_topic_arn      = module.notifications.sns_topic_arn
+  lambda_source_path = "../../../lambda/vulnerability-remediator"
+}
+
 # Outputs
 output "non_prod_vpc_id" {
   value = module.vpc.vpc_id
@@ -75,4 +83,12 @@ output "non_prod_lambda_function" {
 
 output "non_prod_compliance_bucket" {
   value = module.lambda.compliance_bucket_name
+}
+
+output "non_prod_remediation_lambda" {
+  value = module.security.remediation_lambda_name
+}
+
+output "non_prod_security_hub_rule" {
+  value = module.security.security_hub_rule_name
 }
