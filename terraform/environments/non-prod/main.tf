@@ -1,3 +1,5 @@
+# Cloud Governance Platform - Non-Prod Environment Terraform Configuration
+
 # Provider configuration
 provider "aws" {
   region = "ap-south-2"
