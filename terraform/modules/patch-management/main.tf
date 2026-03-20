@@ -66,8 +66,8 @@ resource "aws_ssm_maintenance_window_task" "patch_task" {
   task_type        = "RUN_COMMAND"
   task_arn         = "AWS-RunPatchBaseline"
   priority         = 1
-  max_concurrency = "50%"
-  max_errors = "20%"
+  max_concurrency  = "50%"
+  max_errors       = "20%"
   service_role_arn = aws_iam_role.maintenance_window_role.arn
 
   targets {
@@ -76,23 +76,23 @@ resource "aws_ssm_maintenance_window_task" "patch_task" {
   }
 
   task_invocation_parameters {
-  run_command_parameters {
-    service_role_arn = aws_iam_role.maintenance_window_role.arn
-    parameter {
-      name   = "Operation"
-      values = ["Install"]
-    }
-    parameter {
-      name   = "RebootOption"
-      values = ["RebootIfNeeded"]
-    }
-    notification_config {
-      notification_arn    = var.sns_topic_arn
-      notification_events = ["Success", "Failed"]
-      notification_type   = "Command"
+    run_command_parameters {
+      service_role_arn = aws_iam_role.maintenance_window_role.arn
+      parameter {
+        name   = "Operation"
+        values = ["Install"]
+      }
+      parameter {
+        name   = "RebootOption"
+        values = ["RebootIfNeeded"]
+      }
+      notification_config {
+        notification_arn    = var.sns_topic_arn
+        notification_events = ["Success", "Failed"]
+        notification_type   = "Command"
+      }
     }
   }
-}
 }
 
 # IAM Role for Maintenance Window

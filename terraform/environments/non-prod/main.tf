@@ -10,7 +10,7 @@ module "notifications" {
   source             = "../../modules/notifications"
   environment        = "non-prod"
   project_name       = "cloud-governance-platform"
-  notification_email = "praneeth.u.k@gmail.com"  # ← Replace with your actual email
+  notification_email = "praneeth.u.k@gmail.com" # ← Replace with your actual email
 }
 
 # Call the VPC module

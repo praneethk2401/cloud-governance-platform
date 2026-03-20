@@ -5,14 +5,14 @@ provider "aws" {
 
 variable "environment" {
   description = "Environemnt name"
-  type = string
-  default = "learning"
+  type        = string
+  default     = "learning"
 }
 
 variable "project_name" {
   description = "Project name"
-  type = string
-  default = "cloud-governance-platform"
+  type        = string
+  default     = "cloud-governance-platform"
 }
 
 # This creates one S3 bucket in your AWS account
